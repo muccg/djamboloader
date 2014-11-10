@@ -29,7 +29,7 @@ def cache_library(load_view):
   def wrapper(request, library=None):
     cache_ttl = get_cache_ttl(library)
     if cache_ttl is not None:
-      cached_load_view = cache_page(load_view, cache_ttl)
+      cached_load_view = cache_page(cache_ttl)(load_view)
       return cached_load_view(request, library)
     else:
       return load_view(request, library)
